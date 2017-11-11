@@ -10,41 +10,46 @@ class App extends Component {
     this.state = {
       data: {
         room201: [
-          "Meet Your Makers",
-          "Meet Your Makers",
-          "Meet Your Makers",
-          "Meet Your Makers",
-          "Meet Your Makers"
+          "",
+          "",
+          "",
+          "",
+          ""
         ],
         room202: [
-          "Meet Your Makers",
-          "Meet Your Makers",
-          "Meet Your Makers",
-          "Meet Your Makers",
-          "Meet Your Makers"
+          "",
+          "",
+          "",
+          "",
+          ""
         ],
         room203: [
-          "Meet Your Makers",
-          "Meet Your Makers",
-          "Meet Your Makers",
-          "Meet Your Makers",
-          "Meet Your Makers"
+          "",
+          "",
+          "",
+          "",
+          ""
         ],
         room301: [
-          "Meet Your Makers",
-          "Meet Your Makers",
-          "Meet Your Makers",
-          "Meet Your Makers",
-          "Meet Your Makers"
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       }
     }
     this.handleDataChange = this.handleDataChange.bind(this)
   }
 
-  // async componentDidMount(){
-  //     await fetch
-  // }
+  async componentDidMount(){
+    const url = "https://bitmaker-at-a.firebaseio.com/data.json"
+    const response = await fetch(url)
+    const jsonResponse = await response.json()
+    this.setState({data: jsonResponse}) 
+    
+    
+  }
 
   handleDataChange(room, index, newValue) {
     this.setState(prevState => {
@@ -60,6 +65,9 @@ class App extends Component {
         }
       }
 
+      firebase.database().ref("data").set(newState.data)
+
+      return newState
     })
   }
 
@@ -67,7 +75,8 @@ class App extends Component {
 
   render() {
 
-
+    console.log(this.state);
+    
     return (
       <div className="App">
         <Header />

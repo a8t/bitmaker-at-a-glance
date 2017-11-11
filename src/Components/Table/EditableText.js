@@ -16,10 +16,18 @@ class EditableText extends Component {
   }
 
   checkKey(e) {
-    if (e.key === "Enter") {
-      this.acceptInput()
-    } else if (e.key === "Escape") {
-      this.rejectInput()
+    switch (e.key) {
+      case "Enter":
+        this.acceptInput()
+        break;
+      case "Escape":
+        this.rejectInput()
+        break;
+      case "Tab":
+        e.preventDefault();
+        break;
+      default:
+        break;
     }
   }
 
@@ -53,16 +61,16 @@ class EditableText extends Component {
     return (
       <td onClick={this.handleClick} style={style}>
         {this.state.clicked ?
-          <div class="inputbox">
+          <div className="inputbox">
             <input
               autoFocus
               type="text"
               placeholder={this.props.data}
-              onBlur={this.rejectInput}
+              onBlur={this.acceptInput}
               onChange={this.handleChange}
               value={this.state.value}
             />
-            <span class="hint">(Enter to save, Esc to cancel)</span>
+            <span className="hint">(Enter to save, Esc to cancel)</span>
           </div>
           :
           this.props.data
