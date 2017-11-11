@@ -12,7 +12,7 @@ class EditableText extends Component {
         this.checkKey = this.checkKey.bind(this)
     }
 
-    checkKey (e) {
+    checkKey(e) {
         if (e.key === "Escape" || e.key === "Enter") this.acceptInput()
     }
 
