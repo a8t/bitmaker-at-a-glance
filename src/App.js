@@ -8,53 +8,60 @@ class App extends Component {
         super(props)
         this.state = {
             data: {
-                room201: {
-                    monday: "",
-                    tuesday: "",
-                    wednesday: "",
-                    thursday: "",
-                    friday: ""
-                },
-                room202: {
-                    monday: "",
-                    tuesday: "",
-                    wednesday: "",
-                    thursday: "",
-                    friday: ""
-                },
-                room203: {
-                    monday: "",
-                    tuesday: "",
-                    wednesday: "",
-                    thursday: "",
-                    friday: ""
-                },
-                room301: {
-                    monday: "",
-                    tuesday: "",
-                    wednesday: "" ,
-                    thursday: "",
-                    friday: ""
-                }
+                room201: [
+                    "Meet Your Makers",
+                    "Meet Your Makers",
+                    "Meet Your Makers",
+                    "Meet Your Makers",
+                    "Meet Your Makers"
+                ],
+                room202: [
+                    "Meet Your Makers",
+                    "Meet Your Makers",
+                    "Meet Your Makers",
+                    "Meet Your Makers",
+                    "Meet Your Makers"
+                ],
+                room203: [
+                    "Meet Your Makers",
+                    "Meet Your Makers",
+                    "Meet Your Makers",
+                    "Meet Your Makers",
+                    "Meet Your Makers"
+                ],
+                room301: [
+                    "Meet Your Makers",
+                    "Meet Your Makers",
+                    "Meet Your Makers",
+                    "Meet Your Makers",
+                    "Meet Your Makers"
+                ]
             }
         }
         this.handleDataChange = this.handleDataChange.bind(this)
     }
 
-    handleDataChange(room, day, newValue) {
-        console.log(room, day, newValue);
-        
-        
-        this.setState({
-            data: {
-                ...this.state.data, 
-                [room]: {
-                    ...this.state.data[room],
-                    [day]: newValue
+    // async componentDidMount(){
+    //     await fetch
+    // }
+
+    handleDataChange(room, index, newValue) {
+        this.setState(prevState => {
+            return {
+                data: {
+                    ...prevState.data, 
+                    [room]: [
+                        ...prevState.data[room].slice(0,index),
+                        newValue,
+                        ...prevState.data[room].slice(index+1),
+                        
+                    ]
                 }
             }
         })
     }
+
+
 
     render() {
         console.log(this.state.data.room201);
