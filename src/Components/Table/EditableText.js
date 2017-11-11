@@ -5,9 +5,11 @@ class EditableText extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            clicked: false
+            clicked: false,
+            value: ""
         }
         this.handleClick = this.handleClick.bind(this)
+        this.handleChange = this.handleChange.bind(this)
         this.acceptInput = this.acceptInput.bind(this)
         this.checkKey = this.checkKey.bind(this)
     }
@@ -21,8 +23,15 @@ class EditableText extends Component {
         window.addEventListener("keydown", this.checkKey)
     }
 
+    handleChange(e){
+        this.setState({
+            value: e.target.value
+        })
+    }
+
     acceptInput(){
         this.setState({ clicked: false})
+        this.props.handleDataChange(this.state.value ? this.state.value : this.props.data)
         window.removeEventListener("keydown",this.checkKey)
     }
     
@@ -33,8 +42,10 @@ class EditableText extends Component {
                     <input 
                         autoFocus
                         type="text" 
-                        placeholder={this.props.data} 
+                        placeholder={this.props.data}
                         onBlur={this.acceptInput}
+                        onChange={this.handleChange}
+                        value={this.state.value}
                     /> 
                 :
                     this.props.data                

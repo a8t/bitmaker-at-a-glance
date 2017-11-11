@@ -9,7 +9,7 @@
 
 * {
     font-family: 'Varela Round', 'Helvetica Neue', 'Helvetica';
-    color: #666;
+    color: #333;
 }
 
 h1 {
@@ -39,8 +39,9 @@ td:not(:first-child) {
 }
 
 input {
-    font-size: 14px;
+    font-size: 16px;
     padding: 10px;
+    text-align: center;
 }
 
 td:first-child {

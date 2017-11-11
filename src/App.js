@@ -9,46 +9,61 @@ class App extends Component {
         this.state = {
             data: {
                 room201: {
-                    monday: "Meet Your Makers",
-                    tuesday: "Front End Dev",
-                    wednesday: "Digital Marketing",
-                    thursday: "Study Area",
-                    friday: "Etc"
+                    monday: "",
+                    tuesday: "",
+                    wednesday: "",
+                    thursday: "",
+                    friday: ""
                 },
                 room202: {
-                    monday: "Digital Marketing",
-                    tuesday: "Front End Dev",
-                    wednesday: "Digital Marketing",
-                    thursday: "Study Area",
-                    friday: "Etc"
+                    monday: "",
+                    tuesday: "",
+                    wednesday: "",
+                    thursday: "",
+                    friday: ""
                 },
                 room203: {
-                    monday: "Digital Marketing",
-                    tuesday: "Front End Dev",
-                    wednesday: "Digital Marketing",
-                    thursday: "Study Area",
-                    friday: "Etc"
+                    monday: "",
+                    tuesday: "",
+                    wednesday: "",
+                    thursday: "",
+                    friday: ""
                 },
                 room301: {
-                    monday: "Digital Marketing",
-                    tuesday: "Front End Dev",
-                    wednesday: "Digital Marketing",
-                    thursday: "Study Area",
-                    friday: "Etc"
+                    monday: "",
+                    tuesday: "",
+                    wednesday: "" ,
+                    thursday: "",
+                    friday: ""
                 }
             }
         }
+        this.handleDataChange = this.handleDataChange.bind(this)
     }
- 
-    handleDataChange() {
 
+    handleDataChange(room, day, newValue) {
+        console.log(room, day, newValue);
+        
+        
+        this.setState({
+            data: {
+                ...this.state.data, 
+                [room]: {
+                    ...this.state.data[room],
+                    [day]: newValue
+                }
+            }
+        })
     }
 
     render() {
+        console.log(this.state.data.room201);
+        
+        
         return (
             <div className="App">
                 <Header />
-                <Table data={this.state.data} />
+                <Table data={this.state.data} handleDataChange={this.handleDataChange} />
             </div>
         );
     }
