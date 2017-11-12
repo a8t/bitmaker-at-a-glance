@@ -7,10 +7,12 @@ class Login extends Component {
     super(props)
     this.state = {
       email: "",
-      password: ""
+      password: "",
+
     }
     this.windowListen = e => { if (e.key === "Escape") this.props.toggleLogin() }
     this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
 
@@ -29,6 +31,12 @@ class Login extends Component {
     })
   }
 
+  handleSubmit(e){
+    e.preventDefault()
+    this.props.removeWrongLogin()
+    this.props.login(this.state.email, this.state.password)
+    this.setState({password: ""})
+  }
 
 
   render() {
@@ -46,10 +54,7 @@ class Login extends Component {
             X
           </button>
 
-          <form className="popupForm" onSubmit={e => {
-            e.preventDefault()
-            this.props.login(this.state.email, this.state.password)
-          }}>
+          <form className="popupForm" onSubmit={this.handleSubmit}>
             <input 
               type="text" 
               className="block form input" 
@@ -69,6 +74,8 @@ class Login extends Component {
               name="password"
               onChange={this.handleChange}
             />
+
+            {this.props.wrongLogin ? <span id="wrong">Wrong username or password!</span> : ""}
 
             <div className="rememberMe">
               <input type="checkbox" className="form" id="remember" />

@@ -8,6 +8,10 @@ class Header extends Component {
     this.state = {displayLogin: false}
     this.toggleLoginModal = this.toggleLoginModal.bind(this)
   }
+
+  componentWillReceiveProps(newProps){
+    if (newProps.user) this.setState({displayLogin: false})
+  }
   
   toggleLoginModal() {
     this.setState({
@@ -16,10 +20,12 @@ class Header extends Component {
   }
 
   render() {
-    console.log(this.props.user);
     
     return (
       <div className="header">
+
+        <img className='logo' src={require("../../logo.png")} alt="General Assembly Logo"/>
+
         <h1>Bitmaker At A Glance</h1>
         {this.props.user
           ? <button onClick={this.props.logout}>Log Out</button>
@@ -31,7 +37,14 @@ class Header extends Component {
           transitionEnterTimeout={800}
           transitionLeaveTimeout={800}>
           {this.state.displayLogin
-            ? <Login toggleLoginModal={this.toggleLoginModal} key="loginarea" login={this.props.login} logout={this.props.logout}/>
+            ? <Login 
+                toggleLoginModal={this.toggleLoginModal} 
+                key="loginarea" 
+                login={this.props.login} 
+                logout={this.props.logout} 
+                wrongLogin={this.props.wrongLogin}
+                removeWrongLogin={this.props.removeWrongLogin}
+              />
             : <span key="span" />
           }
         </CSSTransitionGroup>

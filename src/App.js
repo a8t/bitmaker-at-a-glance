@@ -9,6 +9,7 @@ class App extends Component {
     super(props)
     this.state = {
       user: null,
+      wrongLogin: false,
       data: {
         room201: [
           "",
@@ -43,6 +44,7 @@ class App extends Component {
     this.handleDataChange = this.handleDataChange.bind(this)
     this.login = this.login.bind(this)
     this.logout = this.logout.bind(this)
+    this.removeWrongLogin = this.removeWrongLogin.bind(this)
   }
 
   async componentDidMount(){
@@ -60,17 +62,24 @@ class App extends Component {
 
   }
 
+  removeWrongLogin(){
+    this.setState({ wrongLogin: false})
+  }
+
   login(email, password) {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then((result) => {
         
         const user = result.email;
         this.setState({
-          user: user
+          user: user,
+          wrongLogin: false
         });
-      }).catch(function (error) {
+      }).catch((error) => {
+        this.setState({
+          wrongLogin: true
+        })
         console.log(error);
-        
       });
 
   }
@@ -83,7 +92,6 @@ class App extends Component {
         });
       }).catch(function (error) {
         console.log(error);
-
       });
   }
 
@@ -111,7 +119,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header login={this.login} logout={this.logout} user={this.state.user}/>
+        <Header login={this.login} logout={this.logout} user={this.state.user} wrongLogin={this.state.wrongLogin} removeWrongLogin={this.removeWrongLogin}/>
         <Table data={this.state.data} handleDataChange={this.handleDataChange} user={this.state.user}/>
       </div>
     );
