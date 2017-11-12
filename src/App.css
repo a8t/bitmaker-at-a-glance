@@ -53,7 +53,7 @@ tr:not(:first-child) {
     height: 100px;
 }
 
-button {
+.header > button {
     height: 30px;
     position: absolute;
     left: 30px;

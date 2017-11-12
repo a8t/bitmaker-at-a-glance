@@ -32,8 +32,10 @@ class EditableText extends Component {
   }
 
   handleClick() {
-    this.setState({ clicked: true, value: this.props.data })
-    window.addEventListener("keydown", this.checkKey)
+    if (this.state.user){
+      this.setState({ clicked: true, value: this.props.data })
+      window.addEventListener("keydown", this.checkKey)
+    }
   }
 
   handleChange(e) {
@@ -55,7 +57,7 @@ class EditableText extends Component {
 
   render() {
     const style = {
-      cursor: "pointer",
+      cursor: this.state.user ? "pointer" : "",
       backgroundColor: this.state.value.toLowerCase() === "study area" ? "lightgreen" : ""
     }
     return (
