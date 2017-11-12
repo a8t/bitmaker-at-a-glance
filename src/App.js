@@ -101,7 +101,7 @@ class App extends Component {
         }
       }
 
-
+      firebase.database().ref("data").set(newState.data)
       return newState
     })
   }
