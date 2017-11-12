@@ -22,8 +22,8 @@ class Header extends Component {
       <div className="header">
         <h1>Bitmaker At A Glance</h1>
         {this.props.user
-          ? <button onClick={(e) => { e.target.blur(); this.toggleLoginModal() }}> Staff login </button>
-          : <button onClick={this.props.logout}>Log Out</button>
+          ? <button onClick={this.props.logout}>Log Out</button>
+          : <button onClick={(e) => { e.target.blur(); this.toggleLoginModal() }}> Staff login </button>
         }
         
         <CSSTransitionGroup
