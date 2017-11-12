@@ -50,7 +50,14 @@ class App extends Component {
     const response = await fetch(url)
     const jsonResponse = await response.json()
 
-    this.setState({data: jsonResponse}) 
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ user: true, data: jsonResponse });
+      } else {
+        this.setState({ data: jsonResponse }) 
+      }
+    })
+
   }
 
   login(email, password) {
