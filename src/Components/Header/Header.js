@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Login from "./Login";
+import Modal from "./Login/Modal";
 import { CSSTransitionGroup } from "react-transition-group"
 
 class Header extends Component {
@@ -37,7 +37,7 @@ class Header extends Component {
           transitionEnterTimeout={800}
           transitionLeaveTimeout={800}>
           {this.state.displayLogin
-            ? <Login 
+            ? <Modal
                 toggleLoginModal={this.toggleLoginModal} 
                 key="loginarea" 
                 login={this.props.login} 
