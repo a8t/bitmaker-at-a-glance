@@ -14,3 +14,10 @@ yarn start
 ```
 
 
+# Deployment
+
+```
+yarn build
+yarn firebase login // log in with firebase account
+yarn firebase deploy
+```
