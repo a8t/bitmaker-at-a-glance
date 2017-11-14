@@ -14,8 +14,9 @@ yarn start
 ```
 
 
-# Deployment
+## Deployment
 
+If your account is connected to the Firebase project:
 ```
 yarn build
 yarn firebase login // log in with firebase account
